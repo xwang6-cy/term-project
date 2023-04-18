@@ -17,8 +17,10 @@ def index():
                 portfolio[ticker] = int(quantity)
             else:
                 portfolio[ticker] += int(quantity)
+                
             print(portfolio)
         return render_template("stock_info.html", data=data)
+    
     return render_template("index.html")
     
 

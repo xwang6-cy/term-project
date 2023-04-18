@@ -46,7 +46,7 @@ def get_stock_info(ticker):
     
     return stock_info
 
-print(get_stock_info("AAPL"))
+# print(get_stock_info("AAPL"))
 def data_display(ticker):
     """
     Parse and display stock data and extract relevant information: the company description, growth graph to display to the user
@@ -59,7 +59,6 @@ def data_display(ticker):
     """
     # Get relevant stock information
     stock_info = get_stock_info(ticker)
-
     
     name = stock_info['name']
     ticker = stock_info['ticker']
@@ -68,7 +67,7 @@ def data_display(ticker):
     hist = stock_info['hist']
     info = stock_info['info']
     # Print out company description
-    print(f"{name} ({ticker}) is traded on {exchange} in {currency}. {info['longBusinessSummary']}\n")
+    # print(f"{name} ({ticker}) is traded on {exchange} in {currency}. {info['longBusinessSummary']}\n")
     
     # Plot historical market data
     plt.plot(hist['Close'])
@@ -126,7 +125,7 @@ def portfolio_growth(portfolio):
     growth_rate = (total_value - total_cost) / total_cost
     return growth_rate
 
-print(portfolio_growth({'AAPL': 10, 'GOOG': 5, 'MSFT': 20}))
+# print(portfolio_growth({'AAPL': 10, 'GOOG': 5, 'MSFT': 20}))
 
 def portfolio_diversification(portfolio):
     """
@@ -142,6 +141,12 @@ def portfolio_diversification(portfolio):
     # Get information for each stock in the portfolio
     stock_infos = []
     for stock in portfolio.keys():
+        # name = stock_info['name']
+        # ticker = stock_info['ticker']
+        # currency = stock_info['currency']
+        # exchange = stock_info['exchange']
+        # hist = stock_info['hist']
+        # info = stock_info['info']
         stock_info = get_stock_info(stock)
         stock_infos.append(stock_info)
     # Extract sector, industry, and asset class information for each stock
@@ -249,7 +254,6 @@ def data_store(portfolio_name, portfolio_return, portfolio_risk, portfolio_diver
     conn.close()
 
 def main():
-
     data = data_display('AAPL')
     print(data)
     data_display("AAPL")
