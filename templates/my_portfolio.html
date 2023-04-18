@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='portfolio.css') }}">
+</head>
+<body>
+	<h1>My Portfolio</h1>
+	<div class="portfolio-container">
+		<h2>Portfolio Summary</h2>
+		<table>
+			<tr>
+				<th>Stock</th>
+				<th>Quantity</th>
+			</tr>
+			{% for stock, quantity in portfolio.items() %}
+			<tr>
+				<td>{{ stock }}</td>
+				<td>{{ quantity }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		<p>Growth Rate: {{ growth_rate }}%</p>
+		<p>Diversification:</p>
+		<ul>
+			{% for category, value in diversification.items() %}
+			<li>{{ category }}: {{ value }}%</li>
+			{% endfor %}
+		</ul>
+		<p>Portfolio Risk Statistics:</p>
+		<ul>
+			{% for stat, value in portfolio_risk_stats.items() %}
+			<li>{{ stat }}: {{ value }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</body>
+</html>

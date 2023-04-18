@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Ticker Information</title>
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+        .container {
+        
+		display: flex;
+    	/* enable flexbox */
+    	flex-direction: column;
+    	/* stack elements vertically */
+    	justify-content: center;
+    	/* center vertically */
+    	align-items: center;
+    	/* center horizontally */
+    	max-width: 1200px;
+    	/* set a maximum width for the container */
+    	margin: 0 auto;
+    	/* center the container horizontally */
+        }
+
+        h1{
+            text-align: center;
+            font-size: 32px;
+            color: black;
+        }
+        body {
+            text-align: center;
+            font-size: 16px;
+        }
+        table {
+              margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>{{ data['company']['name'] }} ({{ data['company']['ticker'] }})</h1>
+    <p>{{ data['company']['description'] }}</p>
+    <img src="data:image/png;base64, {{ data['image_data'] }}">
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Open Price ({{ data['company']['currency'] }})</th>
+                <th>High Price ({{ data['company']['currency'] }})</th>
+                <th>Low Price ({{ data['company']['currency'] }})</th>
+                <th>Close Price ({{ data['company']['currency'] }})</th>
+                <th>Volume</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for date, values in data['historical_data'].iterrows() %}
+            <tr>
+                <td>{{ date }}</td>
+                <td>{{ values['Open'] }}</td>
+                <td>{{ values['High'] }}</td>
+                <td>{{ values['Low'] }}</td>
+                <td>{{ values['Close'] }}</td>
+                <td>{{ values['Volume'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+	<br>
+
+	<form action="/" method="POST">
+		<input type="hidden" name="ticker" value="{{ data['company']['ticker'] }}">
+		<div class="input-container">
+			<label for="quantity-input">Quantity:</label>
+			<input type="number" id="quantity-input" name="quantity-input" min="1" value="1">
+		</div>
+		<div class="button-container">
+			<button type="submit" id="add-to-portfolio-button">Add to Portfolio</button>
+			<button type="button" id="new-search-button" onclick="location.href=''">New Search</button>
+			<button type="button" id="Go-to-portfolio" onclick="location.href='/my_portfolio'">Portfolio</button>
+		</div>
+	</form>
+</body>
+</html>

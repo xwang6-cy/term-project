@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stock Ticker Input</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #F8F8F8;
+			text-align: center;
+			padding-top: 50px;
+		}
+		
+		h1 {
+			font-size: 36px;
+			color: #444444;
+			margin-bottom: 30px;
+		}
+		
+		form {
+			display: inline-block;
+			background-color: #FFFFFF;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			padding: 30px;
+		}
+		
+		label {
+			font-size: 24px;
+			color: #444444;
+			display: block;
+			margin-bottom: 10px;
+			text-align: left;
+		}
+		
+		input[type="text"] {
+			font-size: 24px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #CCCCCC;
+			width: 300px;
+			margin-bottom: 20px;
+		}
+		
+		button[type="submit"] {
+			font-size: 24px;
+			padding: 10px 20px;
+			background-color: #008CBA;
+			color: #FFFFFF;
+			border-radius: 5px;
+			border: none;
+			cursor: pointer;
+		}
+		
+		button[type="submit"]:hover {
+			background-color: #006F8F;
+			color: #FFFFFF;
+		}
+	</style>
+</head>
+<body>
+	<h1>Enter a Stock Ticker Symbol:</h1>
+	<form method="post">
+		<label for="ticker">Ticker:</label>
+		<input type="text" id="ticker" name="ticker">
+		<button type="submit">Submit</button>
+	</form>
+</body>
+</html>
