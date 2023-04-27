@@ -19,6 +19,7 @@ def index():
                 portfolio[ticker] += int(quantity)
                 
             print(portfolio)
+            print(type(portfolio))
         return render_template("stock_info.html", data=data)
     
     return render_template("index.html")
@@ -26,30 +27,16 @@ def index():
 
 @app.route("/my_portfolio")
 def my_portfolio():
-    # Calculate portfolio growth
-    growth_rate = portfolio_growth(portfolio)
-    if growth_rate is None:
-        # Handle the ZeroDivisionError by returning a default value, raising an exception, or providing a user-friendly message
-        return "Unable to calculate portfolio growth rate. The portfolio has no value or it had no value in the previous period."
+    portfolio_risk_info = portfolio_risk(portfolio)
+    portfolio_growth_info = portfolio_growth(portfolio)
+    portfolio_diversification_info = portfolio_diversification(portfolio)
 
-    # Evaluate portfolio diversification
-    diversification_dict = portfolio_diversification(portfolio)
-    if diversification_dict is None:
-        # Handle the ZeroDivisionError by returning a default value, raising an exception, or providing a user-friendly message
-        return "Unable to calculate portfolio diversiation_dict. The portfolio has no value or it had no value in the previous period."
-
-    # Evaluate portfolio risk
-    portfolio_risk_stats = portfolio_risk([{'ticker': t, 'quantity': q} for t, q in portfolio.items()])
-    if diversification_dict is None:
-        # Handle the ZeroDivisionError by returning a default value, raising an exception, or providing a user-friendly message
-        return "Unable to calculate portfolio portofilo risk stats. The portfolio has no value or it had no value in the previous period."
-
-    # Render the portfolio template with the necessary data
     return render_template('my_portfolio.html', 
-                           portfolio=portfolio, 
-                           growth_rate=growth_rate,
-                           diversification=diversification_dict, 
-                           portfolio_risk_stats=portfolio_risk_stats)
+                            portfolio=portfolio,
+                            portfolio_risk_info=portfolio_risk_info,
+                            portfolio_growth_info=portfolio_growth_info,
+                            portfolio_diversification_info=portfolio_diversification_info)
 
 if __name__ == '__main__':
+
     app.run(debug=True)
