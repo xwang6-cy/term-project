@@ -24,7 +24,6 @@ def index():
     
     return render_template("index.html")
     
-
 @app.route("/my_portfolio")
 def my_portfolio():
     portfolio_risk_info = portfolio_risk(portfolio)
